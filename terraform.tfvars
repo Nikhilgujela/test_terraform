@@ -1,0 +1,12 @@
+resource_group_name     = "myResourceGroup"
+location                = "West Europe"
+vnet_name               = "myVNet"
+subnet_names            = ["frontend-subnet", "backend-subnet", "db-subnet"]
+subnet_prefixes         = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+nsg_names               = ["nsg-frontend", "nsg-backend", "nsg-db"]
+nic_names               = ["frontend-nic", "backend-nic", "db-nic"]
+vm_names                = ["frontend-vm", "backend-vm", "db-vm"]
+admin_username          = "azureuser"
+vm_size                 = "Standard_B1s"
+vm_password_secret_name = "P@ssw0rd1234"
+allowed_ip              = "your-ip-address-here" ##add IP 
