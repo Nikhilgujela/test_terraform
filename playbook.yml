@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Ensure packages are updated
+      apt:
+        update_cache: yes
+
+    - name: Install necessary packages
+      apt:
+        name:
+          - nginx
+          - python3
+          - python3-pip
+        state: present
+
+- hosts: frontend
+  become: yes
+  tasks:
+    - name: Ensure Nginx is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+- hosts: backend
+  become: yes
+  tasks:
+    - name: Install Flask
+      pip:
+        name: flask
+        state: present
+
+- hosts: db
+  become: yes
+  tasks:
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+    - name: Ensure PostgreSQL is running
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
